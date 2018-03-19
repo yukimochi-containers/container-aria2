@@ -1,0 +1,9 @@
+FROM microsoft/nanoserver:sac2016
+
+ENV ARIA2_VER=1.33.1
+RUN powershell "Invoke-WebRequest -Uri https://github.com/aria2/aria2/releases/download/release-${Env:ARIA2_VER}/aria2-${Env:ARIA2_VER}-win-64bit-build1.zip -OutFile aria2-${Env:ARIA2_VER}-win-64bit-build1.zip ;Expand-Archive aria2-${Env:ARIA2_VER}-win-64bit-build1.zip -DestinationPath C:\; Remove-Item aria2-${Env:ARIA2_VER}-win-64bit-build1.zip; Move-Item .\aria2-${Env:ARIA2_VER}-win-64bit-build1\ .\aria2"
+WORKDIR C:/aria2/data
+VOLUME [ "C:/aria2/data" ]
+EXPOSE 6800
+ENTRYPOINT [ "C:/aria2/aria2c.exe" ]
+CMD [ "--enable-rpc", "--rpc-listen-all", "--rpc-allow-origin-all" ]

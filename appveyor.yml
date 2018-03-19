@@ -1,0 +1,18 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+
+environment:
+  DOCKER_USER:
+    secure: XellNXLPKs0ZK0Erh+c+wA==
+  DOCKER_PASS:
+    secure: TPyUGQnCWIXT8DQ7ipuigcED1UiE2nyH9uJgiMH43L0=
+
+install:
+  - docker version
+
+build_script:
+  - docker build . -f Dockerfile.sac2016 -t yukimochi/container-aria2:latest-sac2016
+
+deploy_script:
+  - docker login -u="%DOCKER_USER%" -p="%DOCKER_PASS%"
+  - docker push yukimochi/container-aria2:latest-sac2016

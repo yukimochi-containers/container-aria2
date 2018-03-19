@@ -1,0 +1,19 @@
+image: yukimochi/container-aria2:latest
+manifests:
+  -
+    image: yukimochi/container-aria2:latest-amd64
+    platform:
+      architecture: amd64
+      os: linux
+  -
+    image: yukimochi/container-aria2:latest-aarch64
+    platform:
+      architecture: arm64
+      variant: v8
+      os: linux
+  -
+    image: yukimochi/container-aria2:latest-sac2016
+    platform:
+      architecture: amd64
+      os: windows
+      os.version: 10.0.14393.2125
