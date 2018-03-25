@@ -1,9 +1,13 @@
-platform: linux/arm64
+platform: linux/arm
 
 pipeline:
-  docker:
-    dockerfile: Dockerfile
-    image: plugins/docker:linux-arm64
-    repo: yukimochi/container-aria2
+  build:
+    image: docker
     secrets: [ docker_username, docker_password ]
-    tags: latest-aarch64
+    commands:
+      - docker version
+      - docker login --username=$DOCKER_USERNAME --password=$DOCKER_PASSWORD
+      - docker build -t yukimochi/container-aria2:latest-armv7 .
+      - docker push yukimochi/container-aria2:latest-armv7
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

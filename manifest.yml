@@ -12,7 +12,7 @@ manifests:
       variant: v8
       os: linux
   -
-    image: yukimochi/container-aria2:latest-arm7v
+    image: yukimochi/container-aria2:latest-armv7
     platform:
       architecture: arm
       variant: v7
